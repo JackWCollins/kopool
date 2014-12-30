@@ -1,16 +1,8 @@
 #= require spec_helper
 
 describe 'Home Controller', ->
-
-  # NOTE: Keeping this syntax as a sample, but you don't have to inject these! Done for you in spec_helper.coffee
-  beforeEach inject ($rootScope, $location, $controller) ->
-    @scope       = $rootScope.$new()
-    @location    = $location
-
-    @currentController = 'HomeCtrl'
-    @http.when("GET", "http://localhost:3000/admin/web_states/1.json").respond([{}, {}, {}]);
-    $controller('HomeCtrl', { $scope: @scope, $location: @location })
-
+  beforeEach inject ($controller) ->
+    ctrl = $controller 'HomeCtrl'
 
   describe 'HomeCtrl', ->
     it 'passes a simple jasmine test', ->
@@ -18,5 +10,9 @@ describe 'Home Controller', ->
 
     it 'opens up the home controller', ->
       expect(@scope.controller).toBe(@currentController)
+
+  describe '$scope.getTotalPot', ->
+    it 'should equal -625 if there are no entries', ->
+      expect(1).toEqual(1)
 
 

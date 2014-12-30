@@ -6,18 +6,33 @@
       </div>
     </div>
     <div class='row'>
-      <div class='col-md-8'>
-        <h2>KO Pool</h2>
-        <p>Welcome to the brand new KO Pool Website! {{display_authorized()}}.</p>
-        <p>{{display_battle_summary()}}</p>
-        <p>
-          <a class='btn btn-primary btn-lg' href='#/users/register' ng-show='register_button_show()' role='button'>{{register_button_text()}}</a>
-          <a class='btn btn-info' href='#/users/passwords/send' ng-hide='is_authorized()'>Reset Password</a>
-        </p>
+      <div class='col-lg-4'>
+        <a class='btn btn-primary btn-lg btn-block' href='#/weeks/{{web_state.current_week.id}}/matchups' ng-show='is_authorized()' role='button'>Picks »</a>
+      </div>
+      <div class='col-lg-4'>
+        <img alt='KO Pool Logo' class='img-rounded frontpage-logo' src='/assets/kopool_c_med.png'>
+      </div>
+      <div class='col-lg-4'>
+        <a class='btn btn-primary btn-lg btn-block' href='#/weeks/{{web_state.current_week.id}}/results' ng-show='is_authorized()' role='button'>Results »</a>
+      </div>
+    </div>
+    <br>
+    <p ng-if='register_button_show()'>
+      <a class='btn btn-primary btn-lg' href='#/users/register' role='button'>{{register_button_text()}}</a>
+    </p>
+    <a class='btn btn-info' href='#/users/passwords/send' ng-hide='is_authorized()'>Reset Password</a>
+    <div class='row' ng-show='is_authorized()'>
+      <div class='col-md-4'>
+        <p class='text-center text-muted'>Round</p>
+        <div class='title-text text-center text-primary'>{{display_round_number()}}</div>
       </div>
       <div class='col-md-4'>
-        <img alt='KO Pool Logo' class='img-rounded frontpage-logo' src='/assets/kopool_c_med.png'>
-        <div class='title-text text-center'>{{display_round_number()}}</div>
+        <p class='text-center text-muted'>Remaining</p>
+        <div class='title-text text-center text-danger'>{{active_pool_entries_count}}</div>
+      </div>
+      <div class='col-md-4'>
+        <p class='text-center text-muted'>Payout</p>
+        <div class='title-text text-center green'>{{display_pot_amount() | currency}}</div>
       </div>
     </div>
   </div>
@@ -29,16 +44,23 @@
   </div>
 </div>
 <div class='row'>
+  <div class='col-md-12' ng-controller='KopoolChartsCtrl'>
+    <div ng-if='loaded'>
+      <div ac-chart="'line'" ac-config='line_config' ac-data='chart_data' class='line-chart' id='chart'></div>
+    </div>
+  </div>
+</div>
+<div class='row' ng-show='is_authorized()'>
   <div class='col-md-4'>
     <h2>Your Picks This Week</h2>
-    <p>View all of the Matchups for this week and make your winning picks. You will not be able to make or change any picks after the first game of the week begins.</p>
+    <p>View all of the Matchups for this week and make your winning picks. Thursday night picks will be posted on the front page and will be considered locked in. All other picks must be made by 11 AM on Sunday morning.</p>
     <p>
       <a class='btn btn-primary' href='#/weeks/{{web_state.current_week.id}}/matchups' role='button'>Your Picks »</a>
     </p>
   </div>
   <div class='col-md-4'>
     <h2>This Week's Results</h2>
-    <p>View the Results LIVE for the week. This page will open once the games begin for the week.</p>
+    <p>View the Results LIVE for the week. You can also see results of previous weeks.</p>
     <p>
       <a class='btn btn-primary' href='#/weeks/{{web_state.current_week.id}}/results' role='button'>Results »</a>
     </p>
@@ -83,7 +105,7 @@
       <h2>View All Entries</h2>
       <p>Use this page to view all of the entries to the competition. You can mark specific teams as paid or unpaid here.</p>
       <p>
-        <a class='btn btn-info' href='#/seasons/1/entries' role='button'>View All Entries»</a>
+        <a class='btn btn-info' href='#/seasons/1/entries' role='button'>View All Entries</a>
       </p>
     </div>
   </div>

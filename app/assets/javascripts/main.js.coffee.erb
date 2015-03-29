@@ -110,7 +110,7 @@ modules = [
 			controller: 'WeeksCtrl'
 		}).
 		when('/users/edit', {
-			templateUrl: '<%= asset_path("users/edit.html") %>',
+			templateUrl: '<%= asset_path("registration/edit.html") %>',
 			controller: 'ProfilesCtrl'
 		}).
     when('/admin/web_state', {
@@ -123,10 +123,6 @@ modules = [
 		}).
 		when('/users/register', {
 			templateUrl:'<%= asset_path("registration/register.html") %>',
-			controller: 'RegisterCtrl'
-		}).
-		when('/users/:user_id/profile', {
-			templateUrl:'<%= asset_path("users/profile.html") %>',
 			controller: 'RegisterCtrl'
 		}).
 		when('/users/passwords/send', {

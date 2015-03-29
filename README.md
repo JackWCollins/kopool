@@ -18,6 +18,7 @@ Useful Blog Posts
 - [Angular and HTML5 localStorage](http://www.amitavroy.com/justread/content/articles/html5-local-storage-angular-js)
 - [Angular and HTML5 datastore](http://stackoverflow.com/questions/17888884/service-retrieves-data-from-datastore-but-does-not-update-ui)
 - [Sharing code between controllers using services](http://fdietz.github.io/recipes-with-angular-js/controllers/sharing-code-between-controllers-using-services.html)
+- [Phone Verification with Twilio](http://blog.bigbinary.com/2015/01/12/phone-verification-using-twilio.html)
 
 
 Issue of login page rendering multiple times

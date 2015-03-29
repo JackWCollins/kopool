@@ -24,31 +24,30 @@ class User < ActiveRecord::Base
 
   private
 
-    def send_welcome_email
-      UserMailer.welcome_email(self).deliver
-    end
+  def send_welcome_email
+    UserMailer.welcome_email(self).deliver
+  end
 
-    def set_phone_attributes
-      self.phone_verified = false
-      self.phone_verification_code = generate_phone_verification_code
+  def set_phone_attributes
+    self.phone_verified = false
+    self.phone_verification_code = generate_phone_verification_code
 
-      self.phone.gsub!(/[\s\-\(\)]+/, '')
-    end
+    self.phone.gsub!(/[\s\-\(\)]+/, '')
+  end
 
-    def send_sms_for_phone_verification
-      PhoneVerificationService.new(user_id: id).process
-    end
+  def send_sms_for_phone_verification
+    PhoneVerificationService.new(user_id: id).process
+  end
 
-    def generate_phone_verification_code
-      begin
-        verification_code = SecureRandom.hex(3)
-      end while self.class.exists?(phone_verification_code: verification_code)
+  def generate_phone_verification_code
+    begin
+      verification_code = SecureRandom.hex(3)
+    end while self.class.exists?(phone_verification_code: verification_code)
 
-      verification_code
-    end
+    verification_code
+  end
 
-    def phone_verification_needed?
-      phone.present? && phone_number_changed?
-    end
-
+  def phone_verification_needed?
+    phone.present? && phone_changed?
+  end
 end

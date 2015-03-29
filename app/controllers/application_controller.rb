@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     Rails.logger.debug("require_user method in application controller")
   	if !user_signed_in?
   		flash[:notice] = "Please sign in!"
-  		redirect_to new_user_session_path
+  		redirect_to root_path
   	end
   end
 

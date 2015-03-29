@@ -109,6 +109,10 @@ modules = [
 			templateUrl: '<%= asset_path("weeks/edit.html") %>',
 			controller: 'WeeksCtrl'
 		}).
+		when('/users/edit', {
+			templateUrl: '<%= asset_path("users/edit.html") %>',
+			controller: 'ProfilesCtrl'
+		}).
     when('/admin/web_state', {
       templateUrl: '<%= asset_path("web_state/edit.html") %>',
       controller: 'WebStatesCtrl'

@@ -1,5 +1,13 @@
 class RegistrationsController < Devise::RegistrationsController
 
+	def edit
+		puts "RegistrationsController#edit action"
+	end
+
+	def update
+		puts "RegistrationsController#update action"
+	end
+
   private
 
   def sign_up_params

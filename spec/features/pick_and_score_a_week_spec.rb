@@ -29,7 +29,7 @@ feature "pick and score a week", js: true do
     visit root_path
     angular_login(current_user)
 
-    click_link("Your Picks")
+    click_link("Picks")
 
     # Select Pick for first Pool Entry
 

@@ -7,7 +7,7 @@ class CustomFailure < Devise::FailureApp
 		if http_auth?
 			http_auth
 		else
-			redirect
+			redirect_url
 		end
 	end
 end

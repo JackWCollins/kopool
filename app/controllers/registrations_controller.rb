@@ -1,7 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
+  before_filter :require_user, only: [:edit, :update]
 
 	def edit
 		puts "RegistrationsController#edit action"
+    @user = current_user
+    respond_to do | format |
+      format.json {render json: @user}
+    end
 	end
 
 	def update

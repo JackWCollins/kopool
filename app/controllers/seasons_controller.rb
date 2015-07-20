@@ -22,7 +22,7 @@ class SeasonsController < ApplicationController
 
 	def season_results
 		Rails.logger.debug("seasons_controller.season_results")
-		@pool_entries = PoolEntry.where(season_id: params[:season_id]).order('team_name ASC')
+		@pool_entries = PoolEntry.includes(:user).where(season_id: params[:season_id]).order('team_name ASC')
 
 		respond_to do |format|
 			format.json {render :json => @pool_entries.to_json(include: [{user: {only: [:email, :phone, :name]}}])}
@@ -32,11 +32,9 @@ class SeasonsController < ApplicationController
 	def season_summary
 		Rails.logger.debug("seasons_controller.season_summary")
 		@web_state = WebState.first
-		@season = @web_state.current_season
-		@total_pool_entries_this_season = PoolEntry.where(season_id: @season.id).count
-		@week_number = @web_state.current_week.week_number
-		@season_weeks = @season.weeks
-		@valid_weeks = @season_weeks.keep_if { |w| w.week_number <= @week_number } # We only want to display current or past weeks on the chart
+		@all_pool_entries = PoolEntry.all
+		@total_pool_entries_this_season = (@all_pool_entries.keep_if {|p| p.season_id = @web_state.season_id}).count
+		@valid_weeks = Week.where(season_id: @web_state.season_id).where('week_number <= ?', @web_state.current_week.week_number)
 		@valid_weeks.sort_by! { |w| w.week_number } # Make sure weeks are in the correct order
 
 		@returned_week_numbers_and_values = []

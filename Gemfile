@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.0'
+gem 'rails', '~> 4.2.0'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -33,7 +33,7 @@ group :development, :test do
 end
 
 group :test do
-	gem 'shoulda-matchers'
+	gem 'shoulda-matchers', require: false
 	gem 'database_cleaner'
 	gem 'capybara'
 	gem 'launchy'

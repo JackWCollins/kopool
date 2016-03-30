@@ -17,6 +17,8 @@ gem 'faker'
 gem 'paperclip', '~> 4.1'
 gem 'aws-sdk', '~> 1.5.7'
 
+gem 'jsonapi-serializers'
+
 group :doc do
   gem 'sdoc', require: false
 end

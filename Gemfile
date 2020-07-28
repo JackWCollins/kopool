@@ -17,7 +17,7 @@ gem 'faker'
 # gem 'bootstrap-sass', '~> 3.1.1'
 gem 'paperclip', '~> 4.1'
 gem 'aws-sdk'
-gem 'json', '1.8.5'
+gem 'json', '2.3.0'
 gem 'rack-cors'
 
 group :development, :test do
